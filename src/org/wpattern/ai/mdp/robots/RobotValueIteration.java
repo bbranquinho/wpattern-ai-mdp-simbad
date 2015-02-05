@@ -32,9 +32,10 @@ public class RobotValueIteration extends RobotMotion implements IRobotMdp {
 
 	private boolean executeMoviment;
 
-	public RobotValueIteration(Vector3d startPosition, String name) {
-		super(startPosition, name);
+	public RobotValueIteration(MazeBean maze, Vector3d startPosition, String name) {
+		super(maze, startPosition, name);
 		this.listeners = new ArrayList<IMdpListener>();
+		this.maze = maze;
 	}
 
 	@Override
@@ -58,9 +59,11 @@ public class RobotValueIteration extends RobotMotion implements IRobotMdp {
 	}
 
 	@Override
-	public void run() {
+	public void run(int line, int column) {
 		if (this.executeMoviment) {
+			ActionType action = this.mdp.getPolicy()[line][column];
 
+			this.move(action);
 		} else {
 			this.mdpStep();
 		}
@@ -129,11 +132,6 @@ public class RobotValueIteration extends RobotMotion implements IRobotMdp {
 	@Override
 	public void setMdp(MdpBean mdp) {
 		this.mdp = mdp;
-	}
-
-	@Override
-	public void setMaze(MazeBean maze) {
-		this.maze = maze;
 	}
 
 	@Override

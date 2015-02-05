@@ -8,7 +8,7 @@ width           = 4
 scale_factor    = 1.0
 wall_height     = 0.5
 robot_height    = 0.5
-start           = 1,1
+start           = 2,0
 goal            = 0,3
 robot_classname = org.wpattern.ai.mdp.robots.RobotValueIteration
 
